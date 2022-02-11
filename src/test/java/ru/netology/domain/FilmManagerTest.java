@@ -24,4 +24,15 @@ class FilmManagerTest {
         Film[] expected = {first, second, third, fourth, fifth};
         assertArrayEquals(expected, manager.getPoster());
     }
+
+    @Test
+    void shouldShowAll() {
+        FilmManager manager = new FilmManager();
+        Film first = new Film(1, "film", "film");
+
+        manager.add(first);
+
+        Film[] expected = {first};
+        assertArrayEquals(expected, manager.getPoster());
+    }
 }

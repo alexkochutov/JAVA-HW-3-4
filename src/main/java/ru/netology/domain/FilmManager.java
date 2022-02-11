@@ -25,6 +25,10 @@ public class FilmManager {
         }
 
         tempStorage[tempStorage.length-1] = item;
-        poster = tempStorage;
+        setPoster(tempStorage);
+    }
+
+    public Film[] showAll() {
+        return getPoster();
     }
 }
