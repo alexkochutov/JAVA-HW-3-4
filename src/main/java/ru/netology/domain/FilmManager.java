@@ -17,5 +17,14 @@ public class FilmManager {
         this.posterLimit = posterLimit;
     }
 
+    public void add(Film item) {
+        Film[] tempStorage = new Film[poster.length + 1];
 
+        for (int i = 0; i < poster.length; i++) {
+            tempStorage[i] = poster[i];
+        }
+
+        tempStorage[tempStorage.length-1] = item;
+        poster = tempStorage;
+    }
 }
