@@ -1,12 +1,10 @@
 package ru.netology.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class FilmManager {
@@ -14,7 +12,7 @@ public class FilmManager {
     private int posterLimit = 10;
 
     public FilmManager(int posterLimit) {
-        this.posterLimit = posterLimit;
+        this.setPosterLimit(posterLimit);
     }
 
     public void add(Film item) {
@@ -24,11 +22,29 @@ public class FilmManager {
             tempStorage[i] = poster[i];
         }
 
-        tempStorage[tempStorage.length-1] = item;
+        tempStorage[tempStorage.length - 1] = item;
         setPoster(tempStorage);
     }
 
-    public Film[] showAll() {
+    public Film[] findAll() {
         return getPoster();
+    }
+
+    public Film[] findLast() {
+        int resultArraySize;
+
+        if (poster.length >= this.getPosterLimit()) {
+            resultArraySize = this.getPosterLimit();
+        } else {
+            resultArraySize = poster.length;
+        }
+
+        Film[] resultArray = new Film[resultArraySize];
+
+        for (int i = 0; i < resultArraySize; i++) {
+            resultArray[i] = poster[resultArraySize - i - 1];
+        }
+
+        return resultArray;
     }
 }
