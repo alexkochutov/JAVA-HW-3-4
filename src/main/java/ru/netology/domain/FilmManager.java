@@ -8,43 +8,29 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FilmManager {
-    private Film[] poster = new Film[0];
-    private int posterLimit = 10;
+    private Repository repo = new Repository();
 
-    public FilmManager(int posterLimit) {
-        this.setPosterLimit(posterLimit);
+    public FilmManager(Repository repo) {
+        this.setRepo(repo);
     }
 
-    public void add(Film item) {
-        Film[] tempStorage = new Film[poster.length + 1];
-
-        for (int i = 0; i < poster.length; i++) {
-            tempStorage[i] = poster[i];
-        }
-
-        tempStorage[tempStorage.length - 1] = item;
-        setPoster(tempStorage);
+    public void save(Film item) {
+        repo.save(item);
     }
 
     public Film[] findAll() {
-        return getPoster();
+        return repo.findAll();
     }
 
-    public Film[] findLast() {
-        int resultArraySize;
+    public Film findByID(int ID) {
+        return repo.findByID(ID);
+    }
 
-        if (poster.length >= this.getPosterLimit()) {
-            resultArraySize = this.getPosterLimit();
-        } else {
-            resultArraySize = poster.length;
-        }
+    public void removeByID(int ID) {
+        repo.removeByID(ID);
+    }
 
-        Film[] resultArray = new Film[resultArraySize];
-
-        for (int i = 0; i < resultArraySize; i++) {
-            resultArray[i] = poster[resultArraySize - i - 1];
-        }
-
-        return resultArray;
+    public void removeAll() {
+        repo.removeAll();
     }
 }
