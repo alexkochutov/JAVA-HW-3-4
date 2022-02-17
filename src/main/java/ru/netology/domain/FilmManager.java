@@ -17,11 +17,7 @@ public class FilmManager {
 
     public void add(Film item) {
         Film[] tempStorage = new Film[poster.length + 1];
-
-        for (int i = 0; i < poster.length; i++) {
-            tempStorage[i] = poster[i];
-        }
-
+        System.arraycopy(poster, 0, tempStorage, 0, poster.length);
         tempStorage[tempStorage.length - 1] = item;
         setPoster(tempStorage);
     }
@@ -40,11 +36,9 @@ public class FilmManager {
         }
 
         Film[] resultArray = new Film[resultArraySize];
-
         for (int i = 0; i < resultArraySize; i++) {
-            resultArray[i] = poster[resultArraySize - i - 1];
+            resultArray[i] = poster[poster.length - i - 1];
         }
-
         return resultArray;
     }
 }
